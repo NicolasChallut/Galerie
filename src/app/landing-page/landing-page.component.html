@@ -1,0 +1,57 @@
+<!-- Bannière défilante -->
+<section class="Banner">
+  <div class="header-image" *ngIf="currentImageUrl">
+    <img [src]="currentImageUrl" alt="Bannière défilante" />
+  </div>
+</section>
+
+<div class="gallery-container">
+
+  <!-- Filtres -->
+  <div class="filters">
+    <select [(ngModel)]="filter.category" (change)="onFilter()">
+      <option value="">Toutes les catégories</option>
+      <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+    </select>
+
+    <select [(ngModel)]="filter.format" (change)="onFilter()">
+      <option value="">Tous les formats</option>
+      <option *ngFor="let format of formats" [value]="format">{{ format }}</option>
+    </select>
+
+    <select [(ngModel)]="filter.order" (change)="onFilter()">
+      <option value="">Aucun ordre</option>
+      <option value="asc">Ordre croissant</option>
+      <option value="desc">Ordre décroissant</option>
+    </select>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" *ngIf="lightboxVisible">
+    <div class="lightbox-content">
+      <img [src]="lightboxImageUrl" alt="Image en plein écran" />
+      <span class="text title">{{ lightboxTitle }}</span>
+      <span class="text category">{{ lightboxCategory }}</span>
+      <span class="material-icons close" (click)="closeLightbox()">close</span>
+    </div>
+  </div>
+
+
+  <!-- Galerie d'images -->
+   <div class="gallery">
+  <div *ngFor="let image of filteredImages" class="gallery-item">
+    <img [src]="image.file" [alt]="image.title" />
+    <div class="overlay">
+      <span class="icon fullscreen material-icons" (click)="openLightbox(image.file, image.title, image.category)">
+        fullscreen
+      </span>
+      <span class="icon visibility material-icons">
+        visibility
+      </span>
+      <span class="text title">{{ image.title }}</span>
+      <span class="text category">{{ image.category }}</span>
+    </div>
+  </div>
+</div>
+
+</div>
