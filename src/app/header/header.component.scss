@@ -2,7 +2,10 @@ header {
   display: flex;
   justify-content: space-between;
   height: 80px;
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: white;
   width: 100%;
   overflow: hidden;
   margin: 0;
@@ -20,20 +23,77 @@ header {
       flex: 1;
   }
 
-
-
   .header_nav {
       display: flex;
       justify-content: flex-end;
       max-width: 60%;
+      
 
       ul {
           justify-content: flex-end;
-          width: 50%;
           height: 100%;
           display: flex;
           align-items: center;
-          position: relative;
+          list-style: none;
+          margin: 0;
+
+          li{
+            margin: 0 30px;
+          }
+          
+
+          a{
+            text-decoration: none;
+            font-size: 21px;
+            text-transform: uppercase;
+            color: black;
+          }
+
+          a:hover{
+            color: darkgray;
+          }
       }
   }
 }
+
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .popup-salon {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 500px;
+    width: 100%;
+    position: relative;
+  }
+  
+  .popup-header img {
+    max-width: 100%;
+    border-radius: 8px;
+  }
+  
+  .popup-content {
+    margin-top: 20px;
+  }
+  
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  

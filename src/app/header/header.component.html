@@ -1,14 +1,43 @@
 <header>
     <div class="logo-container">
-        <a href="">
+        <a routerLink="#">
             <img src="/assets/NathalieMota.png" alt="logo du site Nathalie ecrit en rouge">
         </a>
     </div>
     <nav class="header_nav">
         <ul>
-            <li><a routerLink="">Acceuil</a></li>
+            <li><a routerLink="#">Acceuil</a></li>
             <li><a routerLink="">à propos</a></li>
             <li><a routerLink="popup-modal">contact</a></li>
         </ul>
-    </nav>
+    </nav> 
 </header>
+
+<div class="popup-overlay" *ngIf="isVisible" (click)="closeModal($event)">
+    <div class="popup-salon" (click)="$event.stopPropagation()">
+      <div class="popup-header">
+        <!-- Image statique pour la modale -->
+        <img src="assets/contact-header.jpg" alt="Contact Header" class="popup-image" />
+      </div>
+      <div class="popup-content">
+        <form (ngSubmit)="submitForm()">
+          <div>
+            <label for="reference">Référence :</label>
+            <input
+              id="reference"
+              type="text"
+              [(ngModel)]="reference"
+              name="reference"
+              readonly
+            />
+          </div>
+          <div>
+            <label for="message">Message :</label>
+            <textarea id="message" [(ngModel)]="message" name="message"></textarea>
+          </div>
+          <button type="submit">Envoyer</button>
+        </form>
+      </div>
+      <button class="close-btn" (click)="closeModal()">X</button>
+    </div>
+  </div>

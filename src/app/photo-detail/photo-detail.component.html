@@ -1,0 +1,91 @@
+<div class="main-content">
+    <!-- Section 1 -->
+    <div class="section">
+      <div class="left-column">
+        <h2 class="heading">{{ image?.title }}</h2>
+        <ul class="info-photo">
+          <li>référence: {{ image?.reference }}</li>
+          <li>catégorie: {{ image?.category }}</li>
+          <li>format: {{ image?.format }}</li>
+          <li>type: {{ image?.type }}</li>
+          <li>année: {{ image?.year }}</li>
+        </ul>
+      </div>
+  
+      <div class="right-column">
+        <img
+          [src]="image?.url"
+          alt="{{ image?.title }}"
+          style="width: 563px; height: 844px; object-fit: cover;"
+        />
+      </div>
+    </div>
+  
+    <!-- Section 2 -->
+    <div class="section2">
+      <div class="left-column2">
+        <hr class="separator" />
+        <div class="interest">
+          <p class="photo-interest">Cette photo vous intéresse ?</p>
+          <div class="contact-link">
+            <a href="#" class="btn_contact2" (click)="openPopup()">Contact</a>
+          </div>
+        </div>
+      </div>
+      <div class="right-column2">
+        <img [src]="nextImage?.url" alt="Image suivante" />
+        <div class="arrows">
+          <a
+            *ngIf="prevImage"
+            [routerLink]="['/image', prevImage.id]"
+            class="arrow-left"
+            title="Précédent"
+          ></a>
+          <a
+            *ngIf="nextImage"
+            [routerLink]="['/image', nextImage.id]"
+            class="arrow-right"
+            title="Suivant"
+          ></a>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Section 3 -->
+    <div class="like">
+      <hr class="separator1" />
+      <p class="uppercase">Vous aimerez aussi</p>
+    </div>
+  
+    <div class="gallery_singlephoto">
+      <div
+        class="gallery-item"
+        *ngFor="let relatedImage of relatedImages"
+        [attr.data-category]="relatedImage.category"
+      >
+        <img [src]="relatedImage.url" alt="{{ relatedImage.title }}" width="100%" />
+        <div class="overlay">
+          <a
+            [href]="relatedImage.url"
+            class="icon fullscreen-icon"
+            target="_blank"
+            title="Voir en plein écran"
+          >
+            <i class="fa fa-expand"></i>
+          </a>
+          <a
+            [routerLink]="['/image', relatedImage.id]"
+            class="icon eye-icon"
+            title="Voir les informations"
+          >
+            <i class="fa fa-eye"></i>
+          </a>
+          <div class="photo-title">{{ relatedImage.title }}</div>
+          <div class="photo-category">{{ relatedImage.category }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  
