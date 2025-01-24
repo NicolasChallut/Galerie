@@ -2,11 +2,16 @@ import { Component, NgModule } from '@angular/core';
 import { PhotoGalleryService } from '../services/PhotoGallery.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-landing-page',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [
+    FormsModule,
+    CommonModule,
+    RouterLink
+  ],
   templateUrl: './landing-page.component.html',
   styleUrls: ['./landing-page.component.scss'],
 })
@@ -36,7 +41,7 @@ export class LandingPageComponent {
   imagesPerPage: number = 8; // Nombre d'images affichées par lot
   totalImagesShown: number = this.imagesPerPage; // Nombre total d'images actuellement affichées
 
-  constructor(private photoGalleryService: PhotoGalleryService) {}
+  constructor(private photoGalleryService: PhotoGalleryService) { }
 
   ngOnInit(): void {
     // Charger les photos depuis le service

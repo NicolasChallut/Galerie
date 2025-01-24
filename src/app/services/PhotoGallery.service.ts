@@ -159,8 +159,16 @@ export class PhotoGalleryService {
     return this.photos;
   }
 
-  // Méthode pour récupérer une photo par son ID
+  // Méthode pour récupérer une photo par sa référence
   getPhotoById(reference: string) {
     return this.photos.find((photo) => photo.reference === reference);
   }
+
+  
+  getRelatedPhotos(category: string): any[] {
+    return this.photos.filter((photo) => photo.category === category);
+  }
 }
+
+
+

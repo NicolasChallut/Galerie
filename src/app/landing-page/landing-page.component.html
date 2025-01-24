@@ -57,6 +57,7 @@
 
   </div>
 
+  <!-- gallery -->
   <div class="gallery">
     <div *ngFor="let image of displayedImages" class="gallery-item">
       <img [src]="image.file" [alt]="image.title" />
@@ -64,7 +65,7 @@
         <span class="icon fullscreen material-icons" (click)="openLightbox(image.file, image.title, image.category)">
           fullscreen
         </span>
-        <span class="icon visibility material-icons">
+        <span class="icon visibility material-icons" [routerLink]="['/photo-detail',image.reference]">
           visibility
         </span>
         <span class="text title">{{ image.title }}</span>
@@ -72,6 +73,16 @@
       </div>
     </div>
   </div>
+
+<!-- Lightbox -->
+<div class="lightbox" *ngIf="lightboxVisible">
+  <div class="lightbox-content">
+    <img [src]="lightboxImageUrl" alt="Image en plein écran" />
+    <span class="material-icons close" (click)="closeLightbox()">close</span>
+    <span class="text title">{{ lightboxTitle }}</span>
+    <span class="text category">{{ lightboxCategory }}</span>
+  </div>
+</div>  
   
   <!-- Bouton "Charger plus" -->
   <div class="load-more" *ngIf="totalImagesShown < filteredImages.length">

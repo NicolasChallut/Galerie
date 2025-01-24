@@ -1,37 +1,52 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { PhotoGalleryService } from '../services/PhotoGallery.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-photo-detail',
   standalone: true,
   imports: [
-    
+    RouterLink,
+    CommonModule
   ],
   templateUrl: './photo-detail.component.html',
-  styleUrl: './photo-detail.component.scss'
+  styleUrls: ['./photo-detail.component.scss'],
 })
-export class PhotoDetailComponent {
+export class PhotoDetailComponent implements OnInit {
+  image: any; // L'image actuelle affichée
+  relatedImages: any[] = []; // Images liées
+  nextImage: any; // L'image suivante
+  prevImage: any; // L'image précédente
 
-  photo: any;
-  reference: string = 'bf2385'; // Remplacez par une valeur dynamique si nécessaire
-
-  constructor(private photoGalleryService: PhotoGalleryService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private photoGalleryService: PhotoGalleryService
+  ) {}
 
   ngOnInit(): void {
-    this.photo = this.photoGalleryService.getPhotoById(this.reference);
+    // Récupérer l'identifiant de l'image depuis l'URL
+    const imageId = this.route.snapshot.paramMap.get('id');
+    if (imageId) {
+      // Trouver l'image actuelle dans le service
+      this.image = this.photoGalleryService.getPhotoById(imageId);
+
+      if (this.image) {
+        // Charger les images liées
+        this.relatedImages = this.photoGalleryService.getRelatedPhotos(
+          this.image.category
+        );
+
+        // Identifier l'image suivante et précédente
+        const currentIndex = this.photoGalleryService
+          .getPhotos()
+          .findIndex((photo) => photo.reference === imageId);
+
+        const photos = this.photoGalleryService.getPhotos();
+        this.prevImage = currentIndex > 0 ? photos[currentIndex - 1] : null;
+        this.nextImage =
+          currentIndex < photos.length - 1 ? photos[currentIndex + 1] : null;
+      }
+    }
   }
-
-  //gestion modale contact
-  isContactModalVisible: boolean = false;
-  selectedReference: string = '';
-
-  openContactModal(reference?: string): void {
-    this.selectedReference = reference || '';
-    this.isContactModalVisible = true;
-  }
-
-  closeContactModal(): void {
-    this.isContactModalVisible = false;
-  }
-
 }
