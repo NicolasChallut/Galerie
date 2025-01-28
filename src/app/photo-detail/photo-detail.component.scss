@@ -1,0 +1,233 @@
+#main-content {
+    padding: 20px;
+}
+
+#page-photo {
+    width: calc(100vw - 40px);
+    display: flex;
+    flex-direction: column;
+
+
+    .detail-photo {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+
+        .left-column {
+            display: flex;
+
+            section {
+                text-align: left;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                align-self: flex-end;
+                flex: 1;
+                width: 100%;
+                border-bottom: 2px solid #000;
+
+                .heading {
+                    text-transform: uppercase;
+                }
+
+                .info-photo {
+                    padding: 0;
+                }
+            }
+        }
+
+        .right-column {
+            .image-container {
+
+                margin: 0;
+                width: 100%;
+                height: 100%;
+
+                img {
+
+                    min-height: 500px;
+                    max-height: 800px;
+                    object-fit: cover;
+                    object-position: center;
+                    height: 100%;
+
+                }
+            }
+        }
+
+    }
+}
+
+.section2 {
+    border-bottom: 2px solid #000;
+    width: calc(100vw - 40px);
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    height: 118px;
+    align-items: center;
+
+    .left-column2 {
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 100%;
+        width: calc(50% - 10px);
+
+        button {
+            width: 35%;
+            height: 50px;
+            background-color: #D8D8D8;
+            border: none;
+            text-transform: none;
+
+            a {
+                color: black;
+                text-transform: none;
+                text-decoration: none;
+            }
+
+            &:hover {
+                background-color: #000;
+                
+                a{
+                    color: white;
+                }
+            }
+        }
+        
+    }
+
+    .right-column2 {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        height: 100%;
+
+        figure {
+            position: relative;
+            margin-right: 5%;
+            display: flex;
+            width: 81px;
+
+            max-height: 118px;
+            justify-content: center;
+
+            .thumbnail {
+                display: block;
+                max-height: 118px;
+                height: 85%;
+                width: 100%;
+                position: absolute;
+                object-fit: cover;
+                object-position: center;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    object-position: center;
+                }
+            }
+        }
+    }
+}
+
+
+article {
+    flex: 0 1 calc(50% - 20px);
+    width: 50vw;
+    height: 500px;
+    overflow: hidden;
+    position: relative;
+}
+
+.gallery_singlephoto {
+    display: flex;
+    gap: 20px;
+
+    .photo-container {
+
+        width: 100%;
+        height: 100%;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+    }
+}
+
+.gallery-item {
+    flex: 0 1 calc(50% - 20px);
+    max-width: calc(50% - 20px);
+    height: 500px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+
+    }
+
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5); // Couleur de l'overlay semi-transparente
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        color: white; // Texte blanc
+        opacity: 0; // Par défaut, l'overlay est invisible
+        transition: opacity 0.3s ease;
+
+        .icon {
+            position: absolute;
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .fullscreen {
+            top: 10px; // En haut à droite
+            right: 10px;
+        }
+
+        .visibility {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .text {
+            position: absolute;
+            font-size: 14px;
+        }
+
+        .title {
+            bottom: 10px; // En bas à gauche
+            left: 10px;
+        }
+
+        .category {
+            bottom: 10px; // En bas à droite
+            right: 10px;
+        }
+    }
+
+    &:hover .overlay {
+        opacity: 1; // L'overlay devient visible au survol
+    }
+}

@@ -1,0 +1,26 @@
+footer{
+    width: 100%;
+    border-top: 1px solid black;
+    display: flex;
+    justify-content: center;
+    height: 80px;
+    align-items: center;
+    text-transform: uppercase;
+
+    ul{
+        display: flex;
+        margin: auto;
+
+        li{
+            margin: 0 15px;
+            padding: 10px;
+            transition: color 0.2s ease-in-out;
+
+            &:hover{
+                cursor: pointer;
+                color: grey;
+            }
+        }
+    }
+
+}

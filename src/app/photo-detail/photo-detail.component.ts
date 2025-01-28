@@ -25,28 +25,23 @@ export class PhotoDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Récupérer l'identifiant de l'image depuis l'URL
     const imageId = this.route.snapshot.paramMap.get('id');
     if (imageId) {
-      // Trouver l'image actuelle dans le service
       this.image = this.photoGalleryService.getPhotoById(imageId);
-
+  
       if (this.image) {
-        // Charger les images liées
-        this.relatedImages = this.photoGalleryService.getRelatedPhotos(
-          this.image.category
-        );
-
-        // Identifier l'image suivante et précédente
-        const currentIndex = this.photoGalleryService
-          .getPhotos()
-          .findIndex((photo) => photo.reference === imageId);
-
+        // Récupérer les images liées et en limiter le nombre à 2
+        this.relatedImages = this.photoGalleryService
+          .getRelatedPhotos(this.image.category)
+          .slice(0, 2);
+  
         const photos = this.photoGalleryService.getPhotos();
+        const currentIndex = photos.findIndex((photo) => photo.id.toString() === imageId);
+  
         this.prevImage = currentIndex > 0 ? photos[currentIndex - 1] : null;
-        this.nextImage =
-          currentIndex < photos.length - 1 ? photos[currentIndex + 1] : null;
+        this.nextImage = currentIndex < photos.length - 1 ? photos[currentIndex + 1] : null;
       }
     }
   }
+  
 }
