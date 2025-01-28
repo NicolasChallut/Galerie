@@ -110,7 +110,7 @@ header {
       margin-top: 10px;
     }
 
-    textarea{
+    textarea {
       height: 80px;
     }
   }
@@ -132,7 +132,7 @@ header {
       text-transform: none;
       cursor: pointer;
 
-      &:hover{
+      &:hover {
         background-color: black;
         color: white;
       }
@@ -142,10 +142,21 @@ header {
 
 .close-btn {
   position: absolute;
-  top: 0px;
-  right: 0px;
-  background: transparent;
-  border: none;
-  font-size: 20px;
+  top: -5px;
+  right: -5px;
+  border-radius: 20px;
+  height: 20px;
+  width: 20px;
+  border: 1px solid black;
+  background: white;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.4s ease;
+  cursor: pointer;
+
+  &:hover {
+    transform: rotate(180deg);
+  }
 }
