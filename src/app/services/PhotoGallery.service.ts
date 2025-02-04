@@ -176,7 +176,7 @@ export class PhotoGalleryService {
   }
 
   // Méthode pour récupérer une photo par sa référence
-  getPhotoById(reference: string) {
+  getPhotoByRef(reference: string) {
     return this.photos.find((photo) => photo.reference === reference);
   }
 

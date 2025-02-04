@@ -3,6 +3,7 @@ import { PhotoGalleryService } from '../services/PhotoGallery.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { HeaderComponent } from "../header/header.component";
 
 @Component({
   selector: 'app-landing-page',
@@ -10,8 +11,9 @@ import { RouterLink } from '@angular/router';
   imports: [
     FormsModule,
     CommonModule,
-    RouterLink
-  ],
+    RouterLink,
+    HeaderComponent
+],
   templateUrl: './landing-page.component.html',
   styleUrls: ['./landing-page.component.scss'],
 })

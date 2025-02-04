@@ -10,7 +10,7 @@ export const routes: Routes = [
     
     
     {path:'', component: LandingPageComponent },
-    { path: 'photo-detail/:id', component: PhotoDetailComponent },
+    { path: 'photo-detail/:reference', component: PhotoDetailComponent },
 ];
 
 @NgModule({

@@ -1,4 +1,7 @@
+<app-header/>
+
 <div id="main-content">
+
   <!-- Section 1 -->
   <section id="page-photo">
     <div class="detail-photo">
@@ -31,9 +34,8 @@
         <p class="photo-interest">Cette photo vous intéresse ?</p>
       
         
-        <button class="contact-link">
-          <a href="#" class="btn_contact2" >Contact</a>
-        </button>
+        <button (click)="openModal()">Contact</button>
+
 
     
     </article>

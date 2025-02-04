@@ -16,10 +16,10 @@ import { PhotoGalleryService } from '../services/PhotoGallery.service';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent implements OnInit {
-  image: any; // L'image actuelle
+  image: any = null; // L'image actuelle
   isModalVisible: boolean = false; // Visibilité de la modale
-  reference: string = ''; // Référence de la photo
-  message: string ='';
+  reference: string | null = null; // Référence de la photo
+  message: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -27,30 +27,36 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const imageId = this.route.snapshot.paramMap.get('reference'); // Récupérer l'ID dans l'URL
-    if (imageId) {
-      this.image = this.photoGalleryService.getPhotoById(imageId); // Obtenir l'image
-      if (this.image) {
-        this.reference = this.image.reference; // Récupérer la référence
-        console.log('Référence récupérée :', this.reference); // Vérification
+    // 🚀 Abonnement à paramMap pour suivre les changements d’URL
+    this.route.paramMap.subscribe(params => {
+      const imageId = params.get('reference'); // Récupérer l'ID de l'image dans l'URL
+      console.log('🔍 ID de l\'image depuis l\'URL :', imageId); // Vérification 1
+
+      if (imageId) {
+        this.image = this.photoGalleryService.getPhotoByRef(imageId);
+        console.log('📸 Image récupérée :', this.image); // Vérification 2
+
+        if (this.image) {
+          this.reference = this.image.reference;
+          console.log('✅ Référence chargée :', this.reference); // Vérification 3
+        }
       }
-    }
+    });
   }
 
   openModal(): void {
+    console.log('🟢 Ouverture de la modale avec la référence :', this.reference);
     this.isModalVisible = true; // Affiche la modale
   }
 
   closeModal(): void {
+    console.log('🔴 Fermeture de la modale');
     this.isModalVisible = false; // Masque la modale
   }
 
   submitForm(): void {
-    console.log('Formulaire envoyé avec la référence :', this.reference);
-    console.log('Message :', this.message);
+    console.log('📩 Formulaire envoyé avec la référence :', this.reference);
+    console.log('✍️ Message :', this.message);
     this.closeModal();
   }
 }
-
-  
-

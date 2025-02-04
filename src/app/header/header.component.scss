@@ -106,8 +106,7 @@ header {
       height: 40px;
       width: 100%;
       min-width: 100px;
-      max-width: 362.734px;
-      margin-top: 10px;
+      max-width: 360px;
     }
 
     textarea {
@@ -141,8 +140,8 @@ header {
 
 .close-btn {
   position: absolute;
-  top: -5px;
-  right: -5px;
+  top: -10px;
+  right: -10px;
   border-radius: 20px;
   height: 20px;
   width: 20px;
