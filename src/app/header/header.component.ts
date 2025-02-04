@@ -30,7 +30,7 @@ export class HeaderComponent implements OnInit {
     // 🚀 Abonnement à paramMap pour suivre les changements d’URL
     this.route.paramMap.subscribe(params => {
       const imageId = params.get('reference'); // Récupérer l'ID de l'image dans l'URL
-      console.log('🔍 ID de l\'image depuis l\'URL :', imageId); // Vérification 1
+      console.log('🔍 Ref de l\'image depuis l\'URL :', imageId); // Vérification 1
 
       if (imageId) {
         this.image = this.photoGalleryService.getPhotoByRef(imageId);

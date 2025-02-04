@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { HeaderComponent } from "../header/header.component";
 
+
 @Component({
   selector: 'app-landing-page',
   standalone: true,
@@ -12,12 +13,16 @@ import { HeaderComponent } from "../header/header.component";
     FormsModule,
     CommonModule,
     RouterLink,
-    HeaderComponent
+    HeaderComponent,
 ],
   templateUrl: './landing-page.component.html',
   styleUrls: ['./landing-page.component.scss'],
+
 })
+
 export class LandingPageComponent {
+
+
   lightboxVisible: boolean = false; // Indique si la modale est visible
   lightboxImageUrl: string = ''; // URL de l'image à afficher dans la modale
   lightboxTitle: string = ''; // Titre de l'image

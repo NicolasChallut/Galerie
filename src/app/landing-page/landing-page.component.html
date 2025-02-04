@@ -20,7 +20,7 @@
           <span class="arrow">&#9662;</span>
         </button>
         <div>
-        <ul *ngIf="dropdowns['categoryDropdown']" class="dropdown-menu">
+          <ul [class.open]="dropdowns['categoryDropdown']" class="dropdown-menu">
           <li (click)="setFilter('category', '')"></li>
           <li *ngFor="let category of categories" (click)="setFilter('category', category)">
             {{ category }}
@@ -35,7 +35,7 @@
           {{ filter.format || 'formats' }}
           <span class="arrow">&#9662;</span>
         </button>
-        <ul *ngIf="dropdowns['formatDropdown']" class="dropdown-menu">
+        <ul [class.open]="dropdowns['formatDropdown']" class="dropdown-menu">
           <li (click)="setFilter('format', '')"></li>
           <li *ngFor="let format of formats" (click)="setFilter('format', format)">
             {{ format }}
@@ -45,17 +45,24 @@
     </div>
 
       <!-- Menu déroulant pour l'ordre -->
-      <div class="dropdown">
+       <div class="filters_right">
+        <div class="sorting-options">
+<div class="dropdown">
+
         <button class="dropdown-btn" (click)="toggleDropdown('orderDropdown')">
           {{ filter.order || 'trier par' }}
           <span class="arrow">&#9662;</span>
         </button>
-        <ul *ngIf="dropdowns['orderDropdown']" class="dropdown-menu">
-          <li (click)="setFilter('order', '')"></li>
+
+        <ul [class.open]="dropdowns['orderDropdown']" class="dropdown-menu">
+          <li (click)="setFilter('order', '')">  </li>
           <li (click)="setFilter('order', 'asc')">à partir des plus anciènnes</li>
           <li (click)="setFilter('order', 'desc')">à partir des plus réscentes</li>
         </ul>
+        
+       </div>  
       </div>
+    </div>
 
   </div>
 
