@@ -1,4 +1,5 @@
 <app-header/>
+<app-light-box/>
 
 <!-- Bannière -->
 <section class="Banner">
@@ -66,32 +67,24 @@
 
   </div>
 
-  <!-- gallery -->
-  <div class="gallery">
-    <div *ngFor="let image of displayedImages" class="gallery-item">
-      <img [src]="image.file" [alt]="image.title" />
-      <div class="overlay">
-        <span class="icon fullscreen material-icons" (click)="openLightbox(image.file, image.title, image.category)">
-          fullscreen
-        </span>
-        <span class="icon visibility material-icons" [routerLink]="['/photo-detail',image.reference]">
-          visibility
-        </span>
-        <span class="text title">{{ image.title }}</span>
-        <span class="text category">{{ image.category }}</span>
-      </div>
+ <!-- gallery -->
+<div class="gallery">
+  <div *ngFor="let image of displayedImages" class="gallery-item">
+    <img [src]="image.file" [alt]="image.title" />
+    <!-- Overlay avec les icônes -->
+    <div class="overlay">
+      <span class="icon fullscreen material-icons" 
+            (click)="openLightbox(image)">fullscreen</span>
+
+      <span class="icon visibility material-icons" 
+            [routerLink]="['/photo-detail', image.reference]">visibility</span>
+
+      <span class="text title">{{ image.title }}</span>
+      <span class="text category">{{ image.category }}</span>
     </div>
   </div>
+</div>
 
-<!-- Lightbox -->
-<div class="lightbox" *ngIf="lightboxVisible">
-  <div class="lightbox-content">
-    <img [src]="lightboxImageUrl" alt="Image en plein écran" />
-    <span class="material-icons close" (click)="closeLightbox()">close</span>
-    <span class="text title">{{ lightboxTitle }}</span>
-    <span class="text category">{{ lightboxCategory }}</span>
-  </div>
-</div>  
   
   <!-- Bouton "Charger plus" -->
   <div class="load-more" *ngIf="totalImagesShown < filteredImages.length">

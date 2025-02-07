@@ -1,9 +1,10 @@
-import { Component, NgModule } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { PhotoGalleryService } from '../services/PhotoGallery.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { HeaderComponent } from "../header/header.component";
+import { LightBoxComponent } from '../light-box/light-box.component';
 
 
 @Component({
@@ -14,6 +15,7 @@ import { HeaderComponent } from "../header/header.component";
     CommonModule,
     RouterLink,
     HeaderComponent,
+    LightBoxComponent
 ],
   templateUrl: './landing-page.component.html',
   styleUrls: ['./landing-page.component.scss'],
@@ -21,6 +23,9 @@ import { HeaderComponent } from "../header/header.component";
 })
 
 export class LandingPageComponent {
+
+  @ViewChild(LightBoxComponent) lightbox!: LightBoxComponent; // Récupération de l'instance du LightBoxComponent
+
 
 
   lightboxVisible: boolean = false; // Indique si la modale est visible
@@ -118,18 +123,13 @@ export class LandingPageComponent {
     this.onFilter();
   }
 
-  // Ouvrir la modale
-  openLightbox(imageUrl: string, title: string, category: string): void {
-    this.lightboxImageUrl = imageUrl;
-    this.lightboxTitle = title;
-    this.lightboxCategory = category;
-    this.lightboxVisible = true;
+  // ✅ Ouvrir la lightbox en utilisant `@ViewChild(LightBoxComponent)`
+  openLightbox(image: any): void {
+    if (this.lightbox) {
+      this.lightbox.openLightbox(image.file, image.title, image.category);
+    }
   }
 
-  // Fermer la modale
-  closeLightbox(): void {
-    this.lightboxVisible = false;
-  }
 }
 
 

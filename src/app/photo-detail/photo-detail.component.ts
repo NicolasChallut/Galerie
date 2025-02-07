@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { PhotoGalleryService } from '../services/PhotoGallery.service';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../header/header.component';
-
+import { LightBoxComponent } from '../light-box/light-box.component';
 
 @Component({
   selector: 'app-photo-detail',
@@ -11,18 +11,22 @@ import { HeaderComponent } from '../header/header.component';
   imports: [
     RouterLink,
     CommonModule,
-    HeaderComponent  
-],
+    HeaderComponent,
+    LightBoxComponent,
+  ],
   templateUrl: './photo-detail.component.html',
   styleUrls: ['./photo-detail.component.scss'],
 })
 export class PhotoDetailComponent implements OnInit {
-  isModalVisible: boolean = false; // Visibilité de la modale
-  reference: string = ''; // Référence de la photo
-  image: any; // L'image actuelle affichée
-  relatedImages: any[] = []; // Images liées
-  nextImage: any; // L'image suivante
-  prevImage: any; // L'image précédente
+
+  @ViewChild(LightBoxComponent) lightbox!: LightBoxComponent; // Récupération de l'instance du LightBoxComponent
+
+  isModalVisible: boolean = false;
+  reference: string = '';
+  image: any;
+  relatedImages: any[] = [];
+  nextImage: any;
+  prevImage: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -35,7 +39,6 @@ export class PhotoDetailComponent implements OnInit {
       this.image = this.photoGalleryService.getPhotoByRef(imageRef);
   
       if (this.image) {
-        // Récupérer les images liées et en limiter le nombre à 2
         this.relatedImages = this.photoGalleryService
           .getRelatedPhotos(this.image.category)
           .slice(0, 2);
@@ -50,11 +53,15 @@ export class PhotoDetailComponent implements OnInit {
   }
 
   openModal(): void {
-    this.isModalVisible = true; // Affiche la modale
+    this.isModalVisible = true;
   }
 
   closeModal(): void {
-    this.isModalVisible = false; // Masque la modale
+    this.isModalVisible = false;
   }
-  
+
+  // ✅ Fonction pour ouvrir la lightbox
+  openLightbox(image: any): void {
+    this.lightbox.openLightbox(image.file, image.title, image.category);
+  }
 }
