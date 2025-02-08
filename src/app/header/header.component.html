@@ -1,3 +1,4 @@
+
 <header>
   <div class="logo-container">
     <a routerLink="">
@@ -14,11 +15,10 @@
 </header>
 
 <!-- popup contact -->
+
 <div class="popup-overlay" *ngIf="isModalVisible" (click)="closeModal()">
   <div class="popup-salon" (click)="$event.stopPropagation()">
-    <div class="popup-header">
-      <img src="/assets/Contact-header.png" alt="Contact Header" class="popup-image" />
-    </div>
+    
     <div class="popup-content">
       <form (ngSubmit)="submitForm()">
         <article>

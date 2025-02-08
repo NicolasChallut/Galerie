@@ -2,7 +2,11 @@
 <div class="lightbox" *ngIf="lightboxVisible">
     <div class="lightbox-content">
       <img [src]="lightboxImageUrl" alt="Image en plein écran" />
-      <span class="material-icons close" (click)="closeLightbox()">close</span>
+
+      <button class="close-btn" (click)="closeLightbox()"> 
+        <span class="material-icons">cancel</span>
+      </button>
+
       <span class="text title">{{ lightboxTitle }}</span>
       <span class="text category">{{ lightboxCategory }}</span>
     </div>

@@ -1,5 +1,7 @@
 <app-header/>
 <app-light-box/>
+<app-popup *ngIf="isModalVisible"></app-popup>
+
 
 <div id="main-content">
 
@@ -7,7 +9,7 @@
   <section id="page-photo">
     <div class="detail-photo">
       <article class="left-column">
-        <section>
+        <div>
           <h2 class="heading">{{ image?.title }}</h2>
           <ul class="info-photo">
             <li>Référence: {{ image?.reference }}</li>
@@ -16,7 +18,7 @@
             <li>Type: {{ image?.type }}</li>
             <li>Année: {{ image?.year }}</li>
           </ul>
-        </section>
+        </div>
       </article>
 
       <article class="right-column">
@@ -38,20 +40,31 @@
         <button (click)="openModal()">Contact</button>
 
 
+
     
     </article>
 
     <article class="right-column2">
       <figure>
+
         <div class="thumbnail">
-          <img [src]="nextImage?.file" alt="Image suivante" />
+          <img *ngIf="nextImage" [src]="nextImage.file" alt="Image suivante" />
         </div>
+
         <div class="arrows">
-          <a *ngIf="prevImage" [routerLink]="['/image', prevImage.id]" class="arrow-left" title="Précédent"></a>
-          <a *ngIf="nextImage" [routerLink]="['/image', nextImage.id]" class="arrow-right" title="Suivant"></a>
+          <a *ngIf="prevImage" [routerLink]="['/photo-detail', prevImage.reference]" title="Précédent">
+            <span class="material-icons">chevron_left</span>
+          </a>
+          <a *ngIf="nextImage" [routerLink]="['/photo-detail', nextImage.reference]" title="Suivant">
+            <span class="material-icons">chevron_right</span>
+          </a>
         </div>
+        
       </figure>
     </article>
+    
+    
+
   </section>
 
   <!-- Section 3 -->
@@ -70,7 +83,7 @@
           <img [src]="relatedImage.file" alt="{{ relatedImage.title }}" />
         </div>
 
-       <!-- Overlay avec les icônes -->
+       <!-- Overlay -->
       <div class="overlay">
         <span class="icon fullscreen material-icons" 
               (click)="openLightbox(relatedImage)">fullscreen</span>
@@ -81,6 +94,7 @@
         <span class="text title">{{ relatedImage.title }}</span>
         <span class="text category">{{ relatedImage.category }}</span>
       </div>
+
       </article>
     </div>
   </section>

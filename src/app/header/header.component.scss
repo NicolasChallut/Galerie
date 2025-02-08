@@ -67,26 +67,28 @@ header {
   justify-content: center;
   align-items: center;
   z-index: 1000;
-}
+
 
 .popup-salon {
+  display: flex;
+  justify-content: center;
   background: #fff;
   padding: 20px;
   border-radius: 8px;
   max-width: 500px;
   width: 100%;
   position: relative;
-}
+  background-image: url('/assets/Contact-header.png') ;
 
-.popup-header img {
-  max-width: 100%;
-  border-radius: 8px;
-}
+
+
 
 .popup-content {
+  width: 85%;
   margin-top: 20px;
   display: flex;
   justify-content: center;
+  background-color: #fff;
 
   div {
     display: flex;
@@ -157,4 +159,7 @@ header {
   &:hover {
     transform: rotate(180deg);
   }
+}
+}
+
 }

@@ -3,26 +3,32 @@
 }
 
 #page-photo {
+    margin: 50px auto;
+    padding: 20px;
     width: calc(100vw - 40px);
     display: flex;
     flex-direction: column;
 
-
     .detail-photo {
         display: flex;
-        justify-content: flex-start;
+        justify-content: center;
+        width: 100%;
+        margin: 0;
         gap: 20px;
 
         .left-column {
             display: flex;
+            justify-content: flex-start;
+            align-items: flex-end;
+            width: calc(40% - 20px);
+            max-width: 50%;
 
-            section {
+            div {
                 text-align: left;
                 display: flex;
                 flex-direction: column;
                 align-items: flex-start;
                 align-self: flex-end;
-                flex: 1;
                 width: 100%;
                 border-bottom: 2px solid #000;
 
@@ -38,26 +44,21 @@
 
         .right-column {
             border-radius: 10px;
-            position: absolute;
-            right: 20px;
-            top: 80px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-end;
+            width: calc(40% - 20px);
+            max-width: 50%;
 
-            .image-container {
+             img {
 
-                margin: 0;
-                width: 100%;
+                min-height: 500px;
+                max-height: 800px;
+                object-fit: cover;
+                object-position: center;
                 height: 100%;
+                max-width: 100%;
 
-
-                img {
-
-                    min-height: 500px;
-                    max-height: 800px;
-                    object-fit: cover;
-                    object-position: center;
-                    height: 100%;
-
-                }
             }
         }
 
@@ -95,18 +96,17 @@
             }
 
             &:hover {
-                background-color: #000;
 
-                a {
-                    color: white;
-                }
+                background-color: #000;
+                color: white;
+
             }
         }
 
     }
 
     .right-column2 {
-        width: 100%;
+        width: 50%;
         display: flex;
         justify-content: flex-end;
         align-items: center;
@@ -136,18 +136,58 @@
                     object-position: center;
                 }
             }
+
+            .arrows {
+                position: absolute;
+                top: 80%;
+                left: 50%;
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                transform: translate(-50%, -50%);
+            }
+            
+            .arrows a {
+                text-decoration: none;
+                color: black;
+                font-size: 24px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 30px;  /* Ajuste la largeur des flèches */
+                height: 30px; /* Ajuste la hauteur des flèches */
+                background: rgba(255, 255, 255, 0.7); /* Fond semi-transparent */
+                border-radius: 50%; /* Rendre les flèches rondes */
+                box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+            }
+            
+            .arrows a:hover {
+                background: rgba(255, 255, 255, 1);
+            }
+            
+            .arrows a:first-child { /* Flèche gauche */
+                position: absolute;
+                left: -15px; /* Ajuste pour ne pas trop dépasser */
+            }
+            
+            .arrows a:last-child { /* Flèche droite */
+                position: absolute;
+                right: -15px; /* Ajuste pour ne pas trop dépasser */
+            }
+            
+              
         }
     }
 }
 
 
-article {
-    flex: 0 1 calc(50% - 20px);
-    width: 50vw;
-    height: 500px;
-    overflow: hidden;
-    position: relative;
-}
+// article {
+//     flex: 0 1 calc(50% - 20px);
+//     width: 50vw;
+//     height: 500px;
+//     overflow: hidden;
+//     position: relative;
+// }
 
 .gallery_singlephoto {
     display: flex;

@@ -1,0 +1,40 @@
+<!-- popup contact -->
+<div class="popup-overlay" *ngIf="isModalVisible" (click)="closeModal()">
+    <div class="popup-salon" (click)="$event.stopPropagation()">
+      <div class="popup-header">
+        <img src="/assets/Contact-header.png" alt="Contact Header" class="popup-image" />
+      </div>
+      <div class="popup-content">
+        <form (ngSubmit)="submitForm()">
+          <article>
+            <div>
+              <label for="name">Nom :</label>
+              <input type="text" name="name" />
+            </div>
+  
+            <div>
+              <label for="E-mail">e-mail :</label>
+              <input type="text" name="e-mail" />
+            </div>
+  
+            <div>
+              <label for="reference">Référence :</label>
+              <input id="reference" type="text" [(ngModel)]="reference" name="reference" readonly />
+            </div>
+            <div>
+              <label for="message">Message :</label>
+              <textarea id="message" [(ngModel)]="message" name="message"></textarea>
+            </div>
+          </article>
+  
+          <div class="submit">
+          <button type="submit" >Envoyer</button>
+          </div>
+  
+        </form>
+      </div>
+      <button class="close-btn" (click)="closeModal()"> 
+        <span class="material-icons">cancel</span>
+      </button>
+    </div>
+  </div>

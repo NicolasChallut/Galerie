@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { PhotoGalleryService } from '../services/PhotoGallery.service';
+import { PopupComponent } from '../popup/popup.component';
 
 @Component({
   selector: 'app-header',
@@ -11,11 +12,15 @@ import { PhotoGalleryService } from '../services/PhotoGallery.service';
     RouterLink,
     CommonModule,
     FormsModule,
+    
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent implements OnInit {
+
+  @ViewChild(PopupComponent) popup!: PopupComponent; // Récupération de l'instance du PopupComponent
+
   image: any = null; // L'image actuelle
   isModalVisible: boolean = false; // Visibilité de la modale
   reference: string | null = null; // Référence de la photo
@@ -44,6 +49,12 @@ export class HeaderComponent implements OnInit {
     });
   }
 
+  openPopup(): void {
+    if (this.popup) {
+      this.popup.reference = null; // Pas de référence d'image spécifique
+      this.popup.openModal();
+    }
+  }
   openModal(): void {
     console.log('🟢 Ouverture de la modale avec la référence :', this.reference);
     this.isModalVisible = true; // Affiche la modale
