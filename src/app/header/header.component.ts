@@ -70,4 +70,14 @@ export class HeaderComponent implements OnInit {
     console.log('✍️ Message :', this.message);
     this.closeModal();
   }
+
+  isMenuOpen = false;
+
+toggleMenu() {
+  this.isMenuOpen = !this.isMenuOpen;
+}
+
+closeMenu() {
+  this.isMenuOpen = false;
+}
 }

@@ -5,14 +5,21 @@
       <img src="/assets/NathalieMota.png" alt="logo du site Nathalie ecrit en rouge" />
     </a>
   </div>
-  <nav class="header_nav">
+
+  <!-- Bouton menu burger -->
+  <button class="burger-menu" (click)="toggleMenu()">
+    <span class="material-icons">menu</span>
+  </button>
+
+  <nav class="header_nav" [class.open]="isMenuOpen">
     <ul>
-      <li><a routerLink="">Accueil</a></li>
-      <li><a href="#">À propos</a></li>
-      <li><a (click)="openModal()">Contact</a></li>
+      <li><a routerLink="" (click)="closeMenu()">Accueil</a></li>
+      <li><a href="#" (click)="closeMenu()">À propos</a></li>
+      <li><a (click)="openModal(); closeMenu()">Contact</a></li>
     </ul>
   </nav>
 </header>
+
 
 <!-- popup contact -->
 
