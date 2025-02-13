@@ -5,11 +5,19 @@
         font-size: 14px;
     }
 
+    #page-photo{
+        padding: 0 !important;
+    }
+
     .detail-photo {
         flex-direction: column-reverse;
 
         .right-column {
             width: 100% !important;
+
+            .image-container{
+                margin: 0;
+            }
         }
 
         .left-column {

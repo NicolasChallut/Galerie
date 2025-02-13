@@ -58,7 +58,7 @@
 /* Responsive : Activation du menu burger en mobile */
 @media (max-width: 480px) {
   .burger-menu {
-    display: block;
+    display: block !important;
   }
 
   .header_nav {
@@ -69,19 +69,21 @@
     width: 100%;
     height: 0;
     overflow: hidden;
+    z-index: 100;
     transition: height 0.3s ease-in-out;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
   }
 
   .header_nav.open {
-    height: 150px;
+    height: 90px;
+    
   }
 
   .header_nav ul {
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
     width: 100%;
   }
 
@@ -97,7 +99,9 @@ header {
   align-items: center;
   padding: 15px;
   background: white;
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .logo-container {
@@ -160,6 +164,7 @@ header {
 .popup-salon {
   display: flex;
   justify-content: center;
+  align-items: center;
   background: #fff;
   padding: 20px;
   border-radius: 8px;
