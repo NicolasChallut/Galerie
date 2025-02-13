@@ -4,17 +4,19 @@ import { PhotoGalleryService } from '../services/PhotoGallery.service';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../header/header.component';
 import { LightBoxComponent } from '../light-box/light-box.component';
-import { PopupComponent } from '../popup/popup.component';
+import { ModalService } from '../services/modal.service';
 
 @Component({
   selector: 'app-photo-detail',
   standalone: true,
   imports: [
+
     RouterLink,
     CommonModule,
     HeaderComponent,
     LightBoxComponent,
-    PopupComponent
+    
+    
   ],
   templateUrl: './photo-detail.component.html',
   styleUrls: ['./photo-detail.component.scss'],
@@ -31,6 +33,7 @@ export class PhotoDetailComponent implements OnInit {
   prevImage: any;
 
   constructor(
+    public modalService: ModalService,
     private route: ActivatedRoute,
     private photoGalleryService: PhotoGalleryService
   ) {}
@@ -40,6 +43,9 @@ export class PhotoDetailComponent implements OnInit {
       const imageRef = params.get('reference');
   
       if (imageRef) {
+        this.reference = imageRef; // ✅ Met à jour la référence correctement
+        this.modalService.reference = imageRef; // ✅ Met à jour la référence dans le service
+
         // Récupérer l'image actuelle
         this.image = this.photoGalleryService.getPhotoByRef(imageRef);
   
@@ -64,9 +70,10 @@ export class PhotoDetailComponent implements OnInit {
   }
   
   
+  
 
   openModal(): void {
-    this.isModalVisible = true;
+    this.modalService.openModal(this.reference);
   }
 
   closeModal(): void {

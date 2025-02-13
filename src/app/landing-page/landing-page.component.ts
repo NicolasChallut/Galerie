@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { HeaderComponent } from "../header/header.component";
 import { LightBoxComponent } from '../light-box/light-box.component';
-import { PopupComponent } from '../popup/popup.component';
+
 
 
 @Component({

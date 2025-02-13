@@ -1,0 +1,32 @@
+<div class="popup-overlay" *ngIf="modalService.isModalOpen$ | async" (click)="modalService.closeModal()">
+  <div class="popup-salon" (click)="$event.stopPropagation()">
+    <div class="popup-content">
+      <form (ngSubmit)="modalService.submitForm()">
+        <article>
+          <div>
+            <label for="name">Nom :</label>
+            <input id="name" type="text" name="name" autocomplete="given-name" />
+          </div>
+          <div>
+            <label for="email">e-mail :</label>
+            <input id="email" type="text" name="e-mail" autocomplete="email"/>
+          </div>
+          <div>
+            <label for="reference">Référence :</label>
+            <input id="reference" type="text" [value]="modalService.reference" readonly />
+          </div>
+          <div>
+            <label for="message">Message :</label>
+            <textarea id="message" [(ngModel)]="modalService.message" name="message"></textarea>
+          </div>
+        </article>
+        <div class="submit">
+          <button type="submit">Envoyer</button>
+        </div>
+      </form>
+    </div>
+    <button class="close-btn" (click)="modalService.closeModal()"> 
+      <span class="material-icons">cancel</span>
+    </button>
+  </div>
+</div>
